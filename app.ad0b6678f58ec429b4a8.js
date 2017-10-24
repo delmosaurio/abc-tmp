@@ -37699,6 +37699,7 @@ webpackJsonp([0],[
 	    });
 	
 	    $rootScope.$on('filterChange', function () {
+	      console.log('filterChange');
 	      var value = $rootScope.__filter;
 	
 	      if (!$rootScope.__contacts) return;
@@ -37713,6 +37714,7 @@ webpackJsonp([0],[
 	            return s.uid === i.uid;
 	          }) !== undefined;
 	        });
+	        console.log(filtered);
 	
 	        _this.groups = _lodash2.default.transform(_lodash2.default.groupBy(filtered, 'order'), function (result, value, key) {
 	          result.push({
@@ -37861,6 +37863,7 @@ webpackJsonp([0],[
 	    });
 	
 	    $rootScope.$on('filterChange', function () {
+	      console.log('filterChange');
 	      var value = $rootScope.__filter;
 	
 	      if (!$rootScope.__suggests) return;
@@ -37875,6 +37878,7 @@ webpackJsonp([0],[
 	            return s.uid === i.uid;
 	          }) !== undefined;
 	        });
+	        console.log(filtered);
 	
 	        _this.groups = _.transform(_.groupBy(filtered, 'order'), function (result, value, key) {
 	          result.push({
