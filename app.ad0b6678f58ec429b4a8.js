@@ -36787,6 +36787,11 @@ webpackJsonp([0],[
 	      });
 	    });
 	
+	    $rootScope.$on('$stateChangeStart', function () {
+	      _this.selectedItem = undefined;
+	      _this.searchText = '';
+	    });
+	
 	    this.$scope.$watch(function () {
 	      return _this.$scope.selectAll;
 	    }, function (value) {});
@@ -37399,6 +37404,7 @@ webpackJsonp([0],[
 	
 	      var queryContacts = function queryContacts(cue) {
 	        return function (item) {
+	          if (!item.institution) return false;
 	          return item.institution.cue === cue;
 	        };
 	      };
@@ -37720,36 +37726,6 @@ webpackJsonp([0],[
 	        }, 200);
 	      }
 	    });
-	
-	    $rootScope.$watch(function () {
-	      return $rootScope.__filter;
-	    }, function (value) {
-	      return;
-	      if (!$rootScope.__contacts) return;
-	
-	      if (!value) {
-	        _this.groups = $rootScope.__contacts.grouped;
-	      } else {
-	        var sitems = value.result;
-	
-	        var filtered = _lodash2.default.filter($rootScope.__contacts.contacts, function (i) {
-	          return _lodash2.default.find(sitems, function (s) {
-	            return s.uid === i.uid;
-	          }) !== undefined;
-	        });
-	
-	        _this.groups = _lodash2.default.transform(_lodash2.default.groupBy(filtered, 'order'), function (result, value, key) {
-	          result.push({
-	            order: key,
-	            contacts: value
-	          });
-	        }, []);
-	
-	        $timeout(function () {
-	          $scope.$apply();
-	        }, 200);
-	      }
-	    });
 	  }
 	
 	  _createClass(MainController, [{
@@ -37887,36 +37863,6 @@ webpackJsonp([0],[
 	    $rootScope.$on('filterChange', function () {
 	      var value = $rootScope.__filter;
 	
-	      if (!$rootScope.__suggests) return;
-	
-	      if (!value) {
-	        _this.groups = $rootScope.__suggests.grouped;
-	      } else {
-	        var sitems = value.result;
-	
-	        var filtered = _.filter($rootScope.__suggests.contacts, function (i) {
-	          return _.find(sitems, function (s) {
-	            return s.uid === i.uid;
-	          }) !== undefined;
-	        });
-	
-	        _this.groups = _.transform(_.groupBy(filtered, 'order'), function (result, value, key) {
-	          result.push({
-	            order: key,
-	            contacts: value
-	          });
-	        }, []);
-	
-	        $timeout(function () {
-	          $scope.$apply();
-	        }, 200);
-	      }
-	    });
-	
-	    $rootScope.$watch(function () {
-	      return $rootScope.__filter;
-	    }, function (value) {
-	      return;
 	      if (!$rootScope.__suggests) return;
 	
 	      if (!value) {
